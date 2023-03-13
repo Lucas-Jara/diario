@@ -9,7 +9,6 @@ import { previewData } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
-export const revalidate = 0;
 type Props = {
   currentPost: Post;
   previousPost: Post;

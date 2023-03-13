@@ -12,8 +12,6 @@ type Props = {
   slug: string;
   posts: Post[];
 };
-export const dynamic = "error"
-export const revalidate = 0;
 
 const query = groq`*[_type == "category"]{
   _id,

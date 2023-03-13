@@ -13,9 +13,9 @@ export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (
           .component(Iframe)
           .options({
             url: (doc: any) =>
-              doc?.slug.current
-                ? `http://localhost:3000/api/preview?query=${doc.slug.current}`
-                : `http://localhost:3000/api/preview`,
+              process.env.NODE_ENV === "development"
+                ? `http://localhost:3000/api/preview?slug=${doc.slug.current}`
+                : `https://diario-steel.vercel.app/api/preview?slug=${doc.slug.current}`,
 
             defaultSize: "desktop",
             reload: {
