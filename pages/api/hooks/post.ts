@@ -21,7 +21,7 @@ export default async function handler(
     await res.revalidate(`/`);
     await res.revalidate(`/post/${postSlug}`);
     await res.revalidate(`/author/${authorSlug}`);
-    await categorySlug.map(async (slug : string)=> await res.revalidate(`/category/${slug}`))
+    categorySlug.map(async (slug : string)=> await res.revalidate(`/category/${slug}`))
     // await res.revalidate(`/category/${categorySlug}`);
     res.status(200).json({ msg: "Post pages revalidated." });
   } catch (error) {
