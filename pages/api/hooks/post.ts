@@ -19,8 +19,8 @@ export default async function handler(
     
     await res.revalidate(`/post/${slug}`);
     await res.revalidate(`/`);
-    console.log("slug:", slug);
-    res.status(200).json({ msg: "Post pages revalidated.", _id });
+    console.log("slug:", slug, _id);
+    res.status(200).json({ msg: "Post pages revalidated." });
   } catch (error) {
     res.status(401).json({ msg: "Something went wrong!" });
   }
