@@ -12,6 +12,8 @@ export async function generateStaticParams() {
   return slugs;
 }
 
+export const revalidate = 0;
+
 const getData = async (slug: string) => {
   const category = await client.fetch(
     `*[_type == "category" && $slug == slug.current][0]{
