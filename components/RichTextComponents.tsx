@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "../lib/urlFor";
 import localfont from "next/font/local";
+import { InstagramPost, YouTubePreview } from "./";
 
 const fontello = localfont({
   src: "../public/fontello/font/blockquote.woff2",
@@ -12,7 +13,7 @@ export const RichTextComponents = {
   types: {
     image: ({ value }: any) => {
       return (
-        <div className="relative max-w-lg mx-auto h-full my-6">
+        <div className="relative mx-auto max-w-2xl my-6">
           <div className="h-0 pb-[56.25%]">
             <Image
               src={urlFor(value).url()}
@@ -26,6 +27,10 @@ export const RichTextComponents = {
         </div>
       );
     },
+    instagramPost: ({ value }: any) => {
+      return <InstagramPost url={value.url} />;
+    },
+    youtube: ({value}:any)=><YouTubePreview url={value.url} />
   },
   list: {
     bullet: ({ children }: any) => (
@@ -34,12 +39,17 @@ export const RichTextComponents = {
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="m-6 sm:m-10 pl-6 sm:pl-10 list-decimal space-y-2">{children}</ol>
+      <ol className="m-6 sm:m-10 pl-6 sm:pl-10 list-decimal space-y-2">
+        {children}
+      </ol>
     ),
   },
   block: {
     normal: ({ children, index }: any) => (
-      <p key={index} className={`text-text-normal text-lg te mx-3 my-2 font-normal`}>
+      <p
+        key={index}
+        className={`text-text-normal text-lg te mx-3 my-2 font-normal`}
+      >
         {children}
       </p>
     ),
@@ -53,12 +63,14 @@ export const RichTextComponents = {
       <h4 className="text-2xl my-6 px-3 font-bold">{children}</h4>
     ),
     blockquote: ({ children }: any) => (
-        <blockquote className={`${fontello.style.fontFamily} m-10 text-3xl text-red-400 `}>
+      <blockquote
+        className={`${fontello.style.fontFamily} m-10 text-3xl text-red-400 `}
+      >
         <b className="icon-quote-left-1"></b>
-          {/* border-l-[#f7ab0a] border-l-4 */}
-          {children}
+        {/* border-l-[#f7ab0a] border-l-4 */}
+        {children}
         <b className="icon-quote-right-1"></b>
-        </blockquote>
+      </blockquote>
     ),
   },
   marks: {

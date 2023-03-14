@@ -15,12 +15,13 @@ export default async function handler(
       )
     )
       return res.status(401).json({ msg: "Invalid request!" });
-      const data = req.body;
+
     const { slug } = req.body;
-    
-    await res.revalidate(`/post/${slug}`);
+
     await res.revalidate(`/`);
-    console.log("slug:", slug, data);
+    await res.revalidate(`/post/${slug}`);
+    await res.revalidate(`/category`);
+    await res.revalidate(`/author`);
     res.status(200).json({ msg: "Post pages revalidated." });
   } catch (error) {
     res.status(401).json({ msg: "Something went wrong!" });

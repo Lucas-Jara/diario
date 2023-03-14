@@ -13,7 +13,7 @@ export default defineType({
         Rule.required()
           .min(40)
           .error("Un título de min. Se requieren 10 caracteres"),
-        Rule.max(70).warning("Los títulos más cortos suelen ser mejores"),
+        Rule.max(120).warning("Los títulos más cortos suelen ser mejores"),
       ],
     }),
     defineField({
@@ -22,7 +22,7 @@ export default defineType({
       type: "string",
       validation:Rule => [
         Rule.required().min(50).error("La descripción de min. Se requieren 15 caracteres"),
-        Rule.max(140).error("Se debe tener 50 caracteres como máximo")
+        Rule.max(360).error("Se debe tener 50 caracteres como máximo")
       ]
     }),
     defineField({
@@ -31,7 +31,7 @@ export default defineType({
       type: "slug",
       options: {
         source: "title",
-        maxLength: 96,
+        maxLength: 120,
       },
       validation: (Rule) => Rule.required(),
     }),
@@ -48,7 +48,6 @@ export default defineType({
       type: "image",
       options: {
         hotspot: true,
-        accept: 'image/*',
       },
       validation: Rule => Rule.required().error("Debe de colocar una imagen")
     }),

@@ -10,7 +10,7 @@ export default defineType({
       title: "Block",
       type: "block",
       styles: [
-        { title: "Normal", value: "normal" },
+        { title: "Normal", value: "normal" }, 
         { title: "Heading 1", value: "h2" },
         { title: "Heading 2", value: "h3" },
         { title: "Heading 3", value: "h4" },
@@ -45,6 +45,12 @@ export default defineType({
       type: "image",
       icon: ImageIcon,
       options: { hotspot: true },
+    }),
+    defineArrayMember({
+      type: "instagramPost",
+    }),
+    defineArrayMember({
+      type: "youtube",
     }),
   ],
 });
