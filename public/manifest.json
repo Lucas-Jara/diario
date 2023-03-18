@@ -1,10 +1,10 @@
 {
-    "name": "pwa-is-cool",
-    "short_name": "PWA",
+    "name": "Diario San Francisco",
+    "short_name": "Diario SF",
     "theme_color": "#2196f3",
-    "background_color": "#2196f3",
-    "display": "fullscreen",
-    "orientation": "portrait",
+    "background_color": "#000",
+    "description": "Diario San Francisco | El Diario de San Francisco Solano. Noticias de Solano, Quilmes, Almirante Brown, Quilmes oeste, La Florida",
+    "display": "portatil",
     "scope": "/",
     "start_url": "/",
     "icons": [
