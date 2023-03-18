@@ -2,26 +2,26 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "post",
-  title: "Post",
+  title: "Posteos",
   type: "document",
   fields: [
     defineField({
       name: "title",
-      title: "Title",
+      title: "Titulo",
       type: "string",
       validation: (Rule) => [
         Rule.required()
-          .min(40)
+          .min(25)
           .error("Un título de min. Se requieren 10 caracteres"),
         Rule.max(120).warning("Los títulos más cortos suelen ser mejores"),
       ],
     }),
     defineField({
-      name: "description",
-      title: "Description",
+      name: "description", 
+      title: "Descripción",
       type: "string",
       validation:Rule => [
-        Rule.required().min(50).error("La descripción de min. Se requieren 15 caracteres"),
+        Rule.required().min(45).error("La descripción de min. Se requieren 45 caracteres"),
         Rule.max(360).error("Se debe tener 50 caracteres como máximo")
       ]
     }),
@@ -37,14 +37,14 @@ export default defineType({
     }),
     defineField({
       name: "author",
-      title: "Author",
+      title: "Autor",
       type: "reference",
       to: { type: "author" },
       validation: Rule => Rule.required().error("Debe seleccionar un autor")
     }),
     defineField({
       name: "mainImage",
-      title: "Main image",
+      title: "Imagen principal",
       type: "image",
       options: {
         hotspot: true,
@@ -53,24 +53,29 @@ export default defineType({
     }),
     defineField({
       name: "categories",
-      title: "Categories",
+      title: "Categorias",
       type: "array",
       of: [{ type: "reference", to: { type: "category" } }],
       validation: Rule => Rule.required().length(1)
     }),
     defineField({
       name: "publishedAt",
-      title: "Published at",
+      title: "Hora de públicación", 
       type: "datetime",
-      validation: Rule => Rule.required()
+      initialValue: new Date().toISOString(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: "body",
-      title: "Body",
+      title: "Contenido",
       type: "blockContent",
     }),
+    defineField({
+      title: '¿Dónde sucedió tal hecho?',
+      name: 'location',
+      type: 'geopoint'
+    })
   ],
-
   preview: {
     select: {
       title: "title",

@@ -1,5 +1,6 @@
 import { defineType, defineArrayMember } from "sanity";
 import { ImageIcon } from "@sanity/icons";
+import {GeopointArrayDiff} from '@sanity/google-maps-input'
 
 export default defineType({
   title: "Block Content",
