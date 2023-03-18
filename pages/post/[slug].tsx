@@ -1,20 +1,11 @@
-import {
-  Breadcrumbs,
-  PostDate,
-  PreviewBlogList,
-  RichTextComponents,
-} from "@/components";
+import { Breadcrumbs, PostDate, RichTextComponents } from "@/components";
 import { Layout } from "@/components/Layout";
-import PreviewSuspense from "@/components/PreviewSuspense";
 import { Post } from "@/interfaces";
 import { client } from "@/lib/sanity.client";
-import { postFieldsOptions, postQuery } from "@/lib/sanity.queries";
+import { postQuery } from "@/lib/sanity.queries";
 import { urlFor } from "@/lib/urlFor";
 import { PortableText } from "@portabletext/react";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { groq } from "next-sanity";
-import Head from "next/head";
-import { previewData } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,35 +16,12 @@ type Props = {
   morePosts: Post[];
 };
 
-// export async function generateStaticParams() {
-//   const slugs = await client.fetch(`*[_type == 'post']{
-//     "slug":slug.current
-//   }`);
-//   return slugs;
-// }
-
 const PostPage = ({
   currentPost,
   previousPost,
   nextPost,
   morePosts,
 }: Props) => {
-  //   if (previewData()) {
-  //     return (
-  //       <PreviewSuspense
-  //         fallback={
-  //           <div>
-  //             <p className="text-center text-lg animate-pulse text-[#f7ab0a]">
-  //               Loading Preview Data...
-  //             </p>
-  //           </div>
-  //         }
-  //       >
-  //         <PreviewBlogList query={query} queryParams={params} />
-  //       </PreviewSuspense>
-  //     );
-  //   }
-
   return (
     <Layout
       title={currentPost.title}
