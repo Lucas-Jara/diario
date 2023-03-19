@@ -13,7 +13,7 @@ export default async function handler(
 ) {
   try {
     const posts = await client.fetch(`*[_type == "post"]{
-            "objectIDs": _id,
+            "objectID": _id,
             title,
             description,
             "slug": slug.current,
