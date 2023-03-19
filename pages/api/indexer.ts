@@ -1,4 +1,3 @@
-import { client } from "./../../lib/sanity.client";
 import { NextApiRequest, NextApiResponse } from "next";
 import algoliasearch from "algoliasearch";
 import sanityClient from "@sanity/client";
@@ -9,6 +8,10 @@ const algolia = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID!,
   process.env.NEXT_PUBLIC_ALGOLIA_API_KEY!
 );
+
+const sanity = sanityClient({
+  apiVersion:"2022-08-12"
+})
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const sanityAlgolia = indexer(
@@ -25,6 +28,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             path: document.slug.current,
             image: urlFor(document.mainImage).url(),
             description: document.description,
+            excerpt: flattenBlocks(document.excerpt),
           };
         default:
           throw new Error(`Unknown type: ${document.type}`);
@@ -32,6 +36,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
   );
   return sanityAlgolia
-    .webhookSync(client, req.body)
+    .webhookSync(sanity, req.body)
     .then(() => res.status(200).send("ok"));
 }
