@@ -1,19 +1,18 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import algoliasearch from "algoliasearch";
-import sanityClient from "@sanity/client";
 import indexer, { flattenBlocks } from "sanity-algolia";
 import { urlFor } from "@/lib/urlFor";
+import { client } from "@/lib/sanity.client";
 
 const algolia = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID!,
   process.env.NEXT_PUBLIC_ALGOLIA_API_KEY!
 );
 
-const sanity = sanityClient({
-  apiVersion:"2022-08-12"
-})
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const sanityAlgolia = indexer(
     {
       post: {
@@ -35,7 +34,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       }
     }
   );
-  return sanityAlgolia
-    .webhookSync(sanity, req.body)
-    .then(() => res.status(200).send("ok"));
+  await sanityAlgolia.webhookSync(client, req.body);
+  return res.status(200).send("ok");
 }
