@@ -7,7 +7,7 @@ const algoliaClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_API_KEY!
 );
 
-const index = algoliaClient.initIndex("diario-post-index");
+const index = algoliaClient.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!);
 
 export default async function handler(
   req: NextApiRequest,
