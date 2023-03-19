@@ -12,9 +12,24 @@ module.exports = withPWA({
   images: {
     domains: ["cdn.sanity.io", "via.placeholder.com"]
   },
-  webpack: (config) => {
-    config.resolve.modules.push(path.resolve('./'));
-    return config;
-  }
+  async redirects() {
+    return [
+      {
+        source: '/post',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/category',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/author',
+        destination: '/',
+        permanent: true,
+      },
+    ]
+  },
 })
 

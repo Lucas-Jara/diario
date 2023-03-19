@@ -12,7 +12,7 @@ export const SocialsIcons = ({ socials }: Props) => {
       {Object.entries(socials).map(([prop, value]) => (
         <div key={prop} className="bg-white rounded-full relative p-2 h-10 w-10 grid place-content-center">
           <Link href={{pathname:`${value}`}} passHref={true} target="_blank">
-              <Image src={`/icon/icon-${prop}.svg`} alt={prop} width={30} height={30} />
+              <Image src={`/icons/icon-${prop}.svg`} alt={prop} width={30} height={30} />
           </Link>
         </div>
       ))}

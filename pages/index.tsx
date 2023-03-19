@@ -10,39 +10,28 @@ import {
 import { Ads, Post as IPost } from "@/interfaces";
 import { client } from "@/lib/sanity.client";
 import Link from "next/link";
-import { postByCategory } from "@/lib/sanity.queries";
+import { adsQuery, postByCategory } from "@/lib/sanity.queries";
 import { GetStaticProps } from "next";
 import { Layout } from "@/components/Layout";
 
 type Props = {
-  categories: [
-    {
-      _id: string;
-      title: string;
-      slug: string;
-      posts: IPost[];
-    }
-  ];
+  categories: {
+    _id: string;
+    title: string;
+    slug: string;
+    posts: IPost[];
+  }[];
+  ads: Ads[];
 };
 
-// const getAds = async () => {
-//   const ads = await client.fetch(`*[_type == "ads"]{
-//     _id,
-//     name,
-//     mainImage,
-//     socials
-//   }`);
-//   return ads;
-// };
-
-const HomePage = ({ categories }: Props) => {
+const HomePage = ({ categories, ads }: Props) => {
   return (
     <Layout
       title="Diario San Francisco | El Diario de Solano"
       description="Diario San Francisco | El Diario de San Francisco Solano. Noticias de Solano, Quilmes, Almirante Brown, Quilmes oeste, La Florida"
     >
       <div className="p-4 container mx-auto">
-        {/* <Slider ads={ads} /> */}
+        <Slider ads={ads} />
         <div className="my-6 flex flex-col space-y-6">
           {categories.map((category) => (
             <div key={category._id}>
@@ -85,10 +74,13 @@ const HomePage = ({ categories }: Props) => {
 export default HomePage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const postOrderByCategory = await client.fetch(postByCategory);
+  const [postOrderByCategory, ads] = await Promise.all([
+    await client.fetch(postByCategory),
+    await client.fetch(adsQuery),
+  ]);
 
   return {
-    props: { categories: postOrderByCategory },
+    props: { categories: postOrderByCategory, ads },
     revalidate: 50,
   };
 };

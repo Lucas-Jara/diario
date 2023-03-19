@@ -12,11 +12,9 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
 export default defineConfig({
   basePath: "/studio",
   name: "Diario",
-  title: "diario-sf",
-
+  title: "Diario Studio",
   projectId,
   dataset,
-
   plugins: [
     deskTool({
       defaultDocumentNode: getDefaultDocumentNode,
@@ -25,8 +23,8 @@ export default defineConfig({
       apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
       defaultZoom: 14,
       defaultLocation: {
-        "lat":-34.77791551462826,
-        "lng":-58.3074189842183
+        lat: -34.77791551462826,
+        lng: -58.3074189842183,
       },
     }),
     visionTool(),

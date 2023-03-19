@@ -34,10 +34,16 @@ export const CategoryQuery = groq`*[_type == 'category'][0...6]{
   "slug": slug.current,
 }`;
 
-
 export const postQuery = groq`*[_type == "post" && slug.current == $slug]{
   "currentPost": {${postFieldsOptions}},
   "previousPost": *[_type == "post" && ^.publishedAt > publishedAt]|order(publishedAt desc)[0]{${postFieldsOptions}},
   "nextPost": *[_type == "post" && ^.publishedAt < publishedAt]|order(publishedAt asc)[0]{${postFieldsOptions}},
   "morePosts": *[_type == "post" && slug.current != $slug] | order(publishedAt desc)[0...3]{${postFieldsOptions}},
 }|order(publishedAt)[0]`;
+
+export const adsQuery = groq`*[_type == "ads"]{
+  _id,
+  name,
+  mainImage,
+  socials
+}`;

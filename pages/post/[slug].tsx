@@ -219,7 +219,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data: Props = await client.fetch(postQuery, { slug: ctx.params?.slug });
-
+  if(!data){
+    return{
+      redirect:{
+        destination:"/",
+        permanent:false
+      }
+    }
+  }
   return {
     props: {
       currentPost: data.currentPost,
