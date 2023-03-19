@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Footer, GoToTop, MenuSidebar, Navbar, SearchSidebar } from "./";
 
+import Image from '../public/image.jpg'
 type Props = {
   children: React.ReactNode;
   title: string;
@@ -8,7 +9,7 @@ type Props = {
   imageUrl?:string
 };
 
-export const Layout = ({ children, title, description, imageUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}image.jpg` }: Props) => {
+export const Layout = ({ children, title, description, imageUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}${Image.src}` }: Props) => {
   return (
     <>
       <Head>
