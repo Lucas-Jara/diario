@@ -16,9 +16,10 @@ export default async function handler(
       )
     )
       return res.status(401).json({ msg: "Invalid request!" });
-    const { postSlug } = req.body;
+    const { postSlug,categorySlug,authorSlug } = req.body;
     await res.revalidate("/");
     await res.revalidate(`/post/${postSlug}`);
+    await res.revalidate(`/author/${authorSlug}`);
     console.log({ postSlug });
     res.status(200).json({ msg: "Post page revalidated!" });
   } catch (error) {
