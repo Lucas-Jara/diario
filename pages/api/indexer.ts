@@ -20,7 +20,7 @@ export default async function handler(
             "image": mainImage.asset,
         }`);
 
-    algoliaClient.initIndex("posts").saveObjects(posts).then(console.log);
+    algoliaClient.initIndex("diario-post-index").saveObjects(posts).then(console.log);
 
     res.status(201).json({ msg: "Todo bien!" });
   } catch (error) {
