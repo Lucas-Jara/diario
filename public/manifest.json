@@ -1,8 +1,8 @@
 {
     "name": "Diario San Francisco",
     "short_name": "Diario SF",
-    "theme_color": "#2196f3",
-    "background_color": "#000",
+    "theme_color": "#2fe0b7",
+    "background_color": "#fff",
     "description": "Diario San Francisco | El Diario de San Francisco Solano. Noticias de Solano, Quilmes, Almirante Brown, Quilmes oeste, La Florida",
     "display": "standalone",
     "scope": "/",
