@@ -227,5 +227,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       nextPost: data.nextPost,
       morePosts: data.morePosts,
     },
+    revalidate: 50
   };
 };

@@ -18,7 +18,7 @@ export default async function handler(
       return res.status(401).json({ msg: "Invalid request!" });
     const { postSlug,categorySlug,authorSlug } = req.body;
     await res.revalidate("/");
-    await res.revalidate(`/post/${postSlug}/`);
+    // await res.revalidate(`/post/${postSlug}/`);
     await res.revalidate(`/author/${authorSlug}`);
     for (const slug of categorySlug) {
       await res.revalidate(`/category/${slug}`);
