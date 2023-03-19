@@ -7,6 +7,8 @@ const algoliaClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_API_KEY!
 );
 
+const index = algoliaClient.initIndex("diario-post-index");
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -20,7 +22,7 @@ export default async function handler(
             "image": mainImage.asset,
         }`);
 
-    algoliaClient.initIndex("diario-post-index").saveObjects(posts).then(console.log);
+    index.saveObjects(posts).then(({ objectIDs }) => console.log(objectIDs));
 
     res.status(201).json({ msg: "Todo bien!" });
   } catch (error) {
