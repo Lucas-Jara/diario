@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import { useEffect, useRef } from "react";
 export const GoToTop = () => {
@@ -10,14 +10,12 @@ export const GoToTop = () => {
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
     const scrollValue = Math.round((pos * 100) / calcHeight);
-    
+
     if (refElement.current != null) {
       if (pos > 100) {
         refElement.current.style.transform = "translateY(0px)";
         refElement.current.style.opacity = "1";
-        refElement.current.style.background = `conic-gradient(#1d9d81 ${
-          scrollValue + 3
-        }%, #fff ${scrollValue}%)`;
+        refElement.current.style.background = `conic-gradient(#1d9d81 ${scrollValue}%, #fff ${scrollValue}%)`;
       } else {
         refElement.current.style.transform = "translateY(130px)";
         refElement.current.style.opacity = "0";
@@ -51,7 +49,7 @@ export const GoToTop = () => {
     <div
       ref={refElement}
       onClick={scrollTop}
-      className="fixed z-50 bottom-4 right-6 lg:right-12 opacity-0 translate-y-28 shadow-lg transition-all duration-500 grid place-items-center w-12 h-12 md:w-20 md:h-20 bg-green rounded-full cursor-pointer"
+      className="fixed z-50 bottom-4 right-6 lg:right-12 opacity-0 translate-y-28 shadow-lg transition-all duration-500 grid place-items-center w-12 h-12 md:w-20 md:h-20 bg-green rounded-full"
     >
       <div
         onClick={scrollUp}

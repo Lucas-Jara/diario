@@ -20,6 +20,9 @@ export default async function handler(
     await res.revalidate("/");
     await res.revalidate(`/post/${postSlug}`);
     await res.revalidate(`/author/${authorSlug}`);
+    for (const slug of categorySlug) {
+      await res.revalidate(`/category/${slug}`);
+    }
     console.log({ postSlug });
     res.status(200).json({ msg: "Post page revalidated!" });
   } catch (error) {
