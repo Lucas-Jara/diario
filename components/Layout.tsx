@@ -8,7 +8,7 @@ type Props = {
   imageUrl?:string
 };
 
-export const Layout = ({ children, title, description, imageUrl = '/image.jpg' }: Props) => {
+export const Layout = ({ children, title, description, imageUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}image.jpg` }: Props) => {
   return (
     <>
       <Head>
