@@ -20,13 +20,8 @@ type Props = {
 
 const CategoryPage = ({ category }: Props) => {
   return (
-    <Layout
-      title={category.title}
-      description={category.title}
-    >
-      <Breadcrumbs
-        currentPage={category.title}
-      />
+    <Layout title={category.title} description={category.title}>
+      <Breadcrumbs currentPage={category.title} />
       <div>
         <div className="p-4 container mx-auto">
           <div className="my-3">
@@ -105,5 +100,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   return {
     props: { category },
+    revalidate: 50,
   };
 };

@@ -37,7 +37,10 @@ type Props = {
 
 const HomePage = ({ categories }: Props) => {
   return (
-    <Layout title="Diario San Francisco | El Diario de Solano" description="Diario San Francisco | El Diario de San Francisco Solano. Noticias de Solano, Quilmes, Almirante Brown, Quilmes oeste, La Florida">
+    <Layout
+      title="Diario San Francisco | El Diario de Solano"
+      description="Diario San Francisco | El Diario de San Francisco Solano. Noticias de Solano, Quilmes, Almirante Brown, Quilmes oeste, La Florida"
+    >
       <div className="p-4 container mx-auto">
         {/* <Slider ads={ads} /> */}
         <div className="my-6 flex flex-col space-y-6">
@@ -86,5 +89,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { categories: postOrderByCategory },
+    revalidate: 50,
   };
 };
